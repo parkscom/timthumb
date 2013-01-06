@@ -525,6 +525,7 @@ class timthumb {
 		$sharpen = (bool) $this->param('s', DEFAULT_S);
 		$canvas_color = $this->param('cc', DEFAULT_CC);
 		$canvas_trans = (bool) $this->param('ct', '1');
+		$auto_rotate = (bool) $this->param('ar', '0');
 
 		// set default width and height if neither are set already
 		if ($new_width == 0 && $new_height == 0) {
@@ -545,6 +546,24 @@ class timthumb {
 			return $this->error('Unable to open image.');
 		}
 
+		// auto rotate with EXIF(in jpeg)
+		// ref : http://www.neilyoungcv.com/blog/code-share/image-resizing-with-php-exif-orientation-fix/
+		if($auto_rotate && preg_match('/^image\/(?:jpg|jpeg)$/i', $mimeType)){ 
+			$exif = exif_read_data($localImage);
+			$ort = $exif['Orientation'];
+			switch($ort) {
+				case 3: // 180 rotate left
+					$image = imagerotate($image, 180, -1);
+					break;
+				case 6: // 	90 rotate right
+					$image = imagerotate($image, -90, -1);
+					break;
+				case 8: // 	90 rotate left
+					$image = imagerotate($image, 90, -1);
+					break;
+			}
+		}
+
 		// Get original width and height
 		$width = imagesx ($image);
 		$height = imagesy ($image);
@@ -556,6 +575,15 @@ class timthumb {
 			$new_height = floor ($height * ($new_width / $width));
 		} else if ($new_height && !$new_width) {
 			$new_width = floor ($width * ($new_height / $height));
+		}
+
+		// if resize scale is larger than original size, don't resize image(keep original size)
+		if ($zoom_crop == 4) {
+			if($new_width > $width)
+				$new_width = $width;
+			if($new_height > $height)
+				$new_height = $height;
+			$zoom_crop = 2;
 		}
 
 		// scale down and add borders
