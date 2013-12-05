@@ -1,6 +1,6 @@
 timthumb (modified)
 ========
-Branched from <http://code.google.com/p/timthumb/> (Rev.r216, Dec 4, 2012), <http://www.binarymoon.co.uk/projects/timthumb/>
+Branched from <http://code.google.com/p/timthumb/> (Ver. 2.8.13, Rev.r218, Sep 27, 2013), <http://www.binarymoon.co.uk/projects/timthumb/>
 
 Original Usage (See also)
 ----------
@@ -22,4 +22,4 @@ Addtional Features
 
 License
 ============
-GNU GPL v2  
+GNU GPL v2
