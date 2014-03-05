@@ -592,7 +592,7 @@ class timthumb {
         $new_width = $width;
       if($new_height > $height)
         $new_height = $height;
-      $zoom_crop = 2;
+      $zoom_crop = 3;
     }    
     
 		// scale down and add borders
