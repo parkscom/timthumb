@@ -59,6 +59,7 @@ if(! defined('DEFAULT_S') )					define ('DEFAULT_S', 0);								// Default sharp
 if(! defined('DEFAULT_CC') )				define ('DEFAULT_CC', 'ffffff');						// Default canvas colour. Allows overrid in timthumb-config.php
 if(! defined('DEFAULT_WIDTH') )				define ('DEFAULT_WIDTH', 100);							// Default thumbnail width. Allows overrid in timthumb-config.php
 if(! defined('DEFAULT_HEIGHT') )			define ('DEFAULT_HEIGHT', 100);							// Default thumbnail height. Allows overrid in timthumb-config.php
+if(! defined('DEFAULT_AR') )			define ('DEFAULT_AR', 0);							// Default autorotate based JPEG EXIF information. Allows overrid in timthumb-config.php
 
 /**
  * Additional Parameters:
