@@ -551,16 +551,18 @@ class timthumb {
 		if($auto_rotate && preg_match('/^image\/(?:jpg|jpeg)$/i', $mimeType)){ 
 			$exif = exif_read_data($localImage);
 			$ort = $exif['Orientation'];
-			switch($ort) {
-				case 3: // 180 rotate left
-					$image = imagerotate($image, 180, -1);
-					break;
-				case 6: // 	90 rotate right
-					$image = imagerotate($image, -90, -1);
-					break;
-				case 8: // 	90 rotate left
-					$image = imagerotate($image, 90, -1);
-					break;
+			if(!empty($ort)){
+				switch($ort) {
+					case 3: // 180 rotate left
+						$image = imagerotate($image, 180, -1);
+						break;
+					case 6: // 	90 rotate right
+						$image = imagerotate($image, -90, -1);
+						break;
+					case 8: // 	90 rotate left
+						$image = imagerotate($image, 90, -1);
+						break;
+				}
 			}
 		}
 
