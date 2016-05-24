@@ -7,18 +7,15 @@ Original Usage (See also)
 - Usage : <http://www.binarymoon.co.uk/projects/timthumb/>
 - full parameter list : <http://www.binarymoon.co.uk/2012/02/complete-timthumb-parameters-guide/>
 
-Addtional Features
+Chnages
 -----------
-* Modified : Small image is not scale-up : zc=4
+  * Modified Param zc=4 small aren't scaled up, original image is used
+  * Added Param ar=1 (default : 1) to autorotate based on JPEG EXIF information
+  * Disabled ALLOW_EXTERNAL on default
+  * Longer cache time on default
+  * Removed Webshots feature
+  * Enabled PNG compression
 
-  If source image is too small then thumnail is not required, display orignal image is more better.
-'zc=4' : don't resize if image width/height is small than $width/$height
-> Usage : http://example.com/timthumb.php?src=small.jpg&zc=4
-
-
-* ADD : autorotate based JPEG EXIF information : ar=1 (default : 0)
-
-  Many digital camera is supported EXIF with Orientation. if EXIF Orientation is "6"(90 rotate right), thumbnial is generated with 90 rotated
 
 License
 ============
