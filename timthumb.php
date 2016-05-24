@@ -25,15 +25,15 @@ define ('VERSION', '2.8.14');                                    // Version of t
 //Load a config file if it exists. Otherwise, use the values below
 if( file_exists(dirname(__FILE__) . '/timthumb-config.php'))  require_once('timthumb-config.php');
 
-if(! defined('DEBUG_ON') )                      define ('DEBUG_ON', false);                // Enable debug logging to web server error log (STDERR)
+if(! defined('DEBUG_ON') )                      define ('DEBUG_ON', FALSE);                // Enable debug logging to web server error log (STDERR)
 if(! defined('DEBUG_LEVEL') )                   define ('DEBUG_LEVEL', 1);                // Debug level 1 is less noisy and 3 is the most noisy
 if(! defined('MEMORY_LIMIT') )                  define ('MEMORY_LIMIT', '30M');              // Set PHP memory limit
-if(! defined('BLOCK_EXTERNAL_LEECHERS') )       define ('BLOCK_EXTERNAL_LEECHERS', false);        // If the image is being loaded on an external site, display a red "No Hotlinking" gif.
+if(! defined('BLOCK_EXTERNAL_LEECHERS') )       define ('BLOCK_EXTERNAL_LEECHERS', FALSE);        // If the image is being loaded on an external site, display a red "No Hotlinking" gif.
 if(! defined('DISPLAY_ERROR_MESSAGES') )        define ('DISPLAY_ERROR_MESSAGES', FALSE);        // Display error messages. Set to false to turn off errors (good for production websites)
 
 //Image fetching and caching
 if(! defined('ALLOW_EXTERNAL') )                define ('ALLOW_EXTERNAL', FALSE);            // Allow image fetching from external websites. Will check against ALLOWED_SITES if ALLOW_ALL_EXTERNAL_SITES is false
-if(! defined('ALLOW_ALL_EXTERNAL_SITES') )      define ('ALLOW_ALL_EXTERNAL_SITES', false);        // Less secure. 
+if(! defined('ALLOW_ALL_EXTERNAL_SITES') )      define ('ALLOW_ALL_EXTERNAL_SITES', FALSE);        // Less secure. 
 if(! defined('FILE_CACHE_ENABLED') )            define ('FILE_CACHE_ENABLED', TRUE);          // Should we store resized/modified images on disk to speed things up?
 if(! defined('FILE_CACHE_TIME_BETWEEN_CLEANS')) define ('FILE_CACHE_TIME_BETWEEN_CLEANS', 60*60*24*30);  // How often the cache is cleaned 
 
@@ -41,7 +41,7 @@ if(! defined('FILE_CACHE_MAX_FILE_AGE') )       define ('FILE_CACHE_MAX_FILE_AGE
 if(! defined('FILE_CACHE_SUFFIX') )             define ('FILE_CACHE_SUFFIX', '.timthumb.txt');      // What to put at the end of all files in the cache directory so we can identify them
 if(! defined('FILE_CACHE_PREFIX') )             define ('FILE_CACHE_PREFIX', 'timthumb');        // What to put at the beg of all files in the cache directory so we can identify them
 if(! defined('FILE_CACHE_DIRECTORY') )          define ('FILE_CACHE_DIRECTORY', './cache');        // Directory where images are cached. Left blank it will use the system temporary directory (which is better for security)
-if(! defined('MAX_FILE_SIZE') )                 define ('MAX_FILE_SIZE', 10485760);            // 10 Megs is 10485760. This is the max internal or external file size that we'll process.  
+if(! defined('MAX_FILE_SIZE') )                 define ('MAX_FILE_SIZE', 1024*1024*15);            // 10 Megs is 10485760. This is the max internal or external file size that we'll process.  
 if(! defined('CURL_TIMEOUT') )                  define ('CURL_TIMEOUT', 20);              // Timeout duration for Curl. This only applies if you have Curl installed and aren't using PHP's default URL fetching mechanism.
 if(! defined('WAIT_BETWEEN_FETCH_ERRORS') )     define ('WAIT_BETWEEN_FETCH_ERRORS', 3600);        // Time to wait between errors fetching remote file
 
@@ -62,7 +62,7 @@ if(! defined('DEFAULT_S') )                     define ('DEFAULT_S', 0);        
 if(! defined('DEFAULT_CC') )                    define ('DEFAULT_CC', 'ffffff');            // Default canvas colour. Allows overrid in timthumb-config.php
 if(! defined('DEFAULT_WIDTH') )                 define ('DEFAULT_WIDTH', 100);              // Default thumbnail width. Allows overrid in timthumb-config.php
 if(! defined('DEFAULT_HEIGHT') )                define ('DEFAULT_HEIGHT', 100);              // Default thumbnail height. Allows overrid in timthumb-config.php
-if(! defined('DEFAULT_AR') )                    define ('DEFAULT_AR', 0);              // Default autorotate based JPEG EXIF information. Allows overrid in timthumb-config.php
+if(! defined('DEFAULT_AR') )                    define ('DEFAULT_AR', 1);              // Default autorotate based JPEG EXIF information. Allows overrid in timthumb-config.php
 
 /**
  * Additional Parameters:
@@ -475,7 +475,7 @@ class timthumb {
     $sharpen = (bool) $this->param('s', DEFAULT_S);
     $canvas_color = $this->param('cc', DEFAULT_CC);
     $canvas_trans = (bool) $this->param('ct', '1');
-    $auto_rotate = (bool) $this->param('ar', '1');
+    $auto_rotate = (bool) $this->param('ar', DEFAULT_AR);
 
     // set default width and height if neither are set already
     if ($new_width == 0 && $new_height == 0) {
