@@ -29,7 +29,7 @@ if(! defined('DEBUG_ON') )                      define ('DEBUG_ON', false);     
 if(! defined('DEBUG_LEVEL') )                   define ('DEBUG_LEVEL', 1);                // Debug level 1 is less noisy and 3 is the most noisy
 if(! defined('MEMORY_LIMIT') )                  define ('MEMORY_LIMIT', '30M');              // Set PHP memory limit
 if(! defined('BLOCK_EXTERNAL_LEECHERS') )       define ('BLOCK_EXTERNAL_LEECHERS', false);        // If the image is being loaded on an external site, display a red "No Hotlinking" gif.
-if(! defined('DISPLAY_ERROR_MESSAGES') )        define ('DISPLAY_ERROR_MESSAGES', true);        // Display error messages. Set to false to turn off errors (good for production websites)
+if(! defined('DISPLAY_ERROR_MESSAGES') )        define ('DISPLAY_ERROR_MESSAGES', FALSE);        // Display error messages. Set to false to turn off errors (good for production websites)
 
 //Image fetching and caching
 if(! defined('ALLOW_EXTERNAL') )                define ('ALLOW_EXTERNAL', FALSE);            // Allow image fetching from external websites. Will check against ALLOWED_SITES if ALLOW_ALL_EXTERNAL_SITES is false
